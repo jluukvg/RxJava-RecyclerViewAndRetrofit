@@ -32,12 +32,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp">
 
-            <View
+            <!--<View
                 android:id="@+id/sections_image_loading_small"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorAccent"
-                android:visibility="visible" />
+                android:visibility="visible" />-->
 
             <ImageView
                 android:id="@+id/thumbnail_small"

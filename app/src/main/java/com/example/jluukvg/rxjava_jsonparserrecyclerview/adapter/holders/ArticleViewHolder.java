@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
     public final RelativeLayout vThumbnailLayout;
     //public ProgressBar vProgressBar;
-    public final View vPlaceHolder;
+    //public final View vPlaceHolder;
     public final ImageView vImage;
     //public TextView vSection;
     public final TextView vTitle;
@@ -28,7 +28,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         super(v);
         vThumbnailLayout = v.findViewById(R.id.thumbnail_layout);
         //vProgressBar = (ProgressBar) v.findViewById(R.id.sections_image_loading);
-        vPlaceHolder = v.findViewById(R.id.sections_image_loading);
+        //vPlaceHolder = v.findViewById(R.id.sections_image_loading);
         vImage = v.findViewById(R.id.thumbnail);
         //vSection = (TextView)  v.findViewById(section);
         vTitle = v.findViewById(R.id.title);

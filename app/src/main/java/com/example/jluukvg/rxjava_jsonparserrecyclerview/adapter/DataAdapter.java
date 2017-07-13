@@ -1,6 +1,8 @@
 package com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -135,7 +137,7 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         SectionCards card = cards.get(position);
         if (card != null) {
 
-            vh1.vPlaceHolder.setVisibility(View.VISIBLE);
+            //vh1.vPlaceHolder.setVisibility(View.VISIBLE);
             final Article ci = ((ArticleCard) card).article;
 
             String strip_title;
@@ -154,23 +156,24 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (ci.thumbnail != null) {
 
                 Picasso.with(context).load(ci.thumbnail.cover_phone)
+                        .placeholder(new ColorDrawable(Color.LTGRAY))
+                        .error(R.drawable.ic_launcher_background)
                         .into(vh1.vImage, new Callback() {
                             public void onSuccess() {
-                                vh1.vPlaceHolder.setVisibility(View.GONE);
-                                vh1.vImage.setVisibility(View.VISIBLE);
+                                //vh1.vPlaceHolder.setVisibility(View.GONE);
+                                //vh1.vImage.setVisibility(View.VISIBLE);
                             }
 
                             public void onError() {
-                                // TODO: Check if this works all the time
                                 //vh1.vThumbnailLayout.setVisibility(View.GONE);
-                                vh1.vImage.setVisibility(View.GONE);
+                                //vh1.vImage.setVisibility(View.GONE);
                             }
                         });
-            } else {
+            } /*else {
                 //vh1.vThumbnailLayout.setVisibility(View.GONE);
                 vh1.vPlaceHolder.setVisibility(View.GONE);
                 vh1.vImage.setVisibility(View.GONE);
-            }
+            }*/
         }
     }
 
@@ -178,7 +181,7 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         SectionCards card = cards.get(position);
         if (card != null) {
 
-            vh2.vPlaceHolder.setVisibility(View.VISIBLE);
+            //vh2.vPlaceHolder.setVisibility(View.VISIBLE);
             final Article ci = ((ArticleSmallCard) card).article;
 
             String strip_title;
@@ -190,22 +193,25 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             vh2.vCreated.setText(timestamp);
 
             if (ci.thumbnail != null) {
-                Picasso.with(context).load(ci.thumbnail.thumb)
+
+                Picasso.with(context).load(ci.thumbnail.cover_phone)
+                        .placeholder(new ColorDrawable(Color.LTGRAY))
+                        .error(R.drawable.ic_launcher_background)
                         .into(vh2.vImage, new Callback() {
                             public void onSuccess() {
-                                vh2.vPlaceHolder.setVisibility(View.GONE);
-                                vh2.vImage.setVisibility(View.VISIBLE);
+                                //vh1.vPlaceHolder.setVisibility(View.GONE);
+                                //vh1.vImage.setVisibility(View.VISIBLE);
                             }
 
                             public void onError() {
-                                vh2.vPlaceHolder.setVisibility(View.GONE);
-                                vh2.vImage.setImageResource(R.drawable.image_default);
+                                //vh1.vThumbnailLayout.setVisibility(View.GONE);
+                                //vh1.vImage.setVisibility(View.GONE);
                             }
                         });
-            } else {
+            } /*else {
                 vh2.vPlaceHolder.setVisibility(View.GONE);
                 vh2.vImage.setImageResource(R.drawable.image_default);
-            }
+            }*/
         }
     }
 

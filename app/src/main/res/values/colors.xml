@@ -6,4 +6,8 @@
     <color name="colorPrimaryDark">#7f000000</color>
     <!--<color name="colorAccent">#FF4081</color>-->
     <color name="colorAccent">#ffcc00</color>
+
+    <color name="titleBlack">#000000</color>
+    <color name="teaserGrey">#666666</color>
+    <color name="timeAgoGrey">#999999</color>
 </resources>

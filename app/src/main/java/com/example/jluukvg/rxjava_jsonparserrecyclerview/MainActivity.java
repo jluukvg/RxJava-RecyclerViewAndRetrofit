@@ -8,6 +8,7 @@ import com.example.jluukvg.rxjava_jsonparserrecyclerview.network.RequestInterfac
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.network.SectionResponse;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView();
         loadJSON();
         Log.d("RXjava", "My int: " + imageHeightInPixels);
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
 
     private void initRecyclerView() {

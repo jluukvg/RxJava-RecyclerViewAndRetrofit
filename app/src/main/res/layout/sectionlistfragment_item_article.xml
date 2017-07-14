@@ -33,7 +33,7 @@
             <RelativeLayout
                 android:id="@+id/thumbnail_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="194dp">
 
                 <!--<View
                     android:id="@+id/sections_image_loading"

@@ -8,14 +8,17 @@ import com.example.jluukvg.rxjava_jsonparserrecyclerview.network.RequestInterfac
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.network.SectionResponse;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -26,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String BASE_URL = "http://admin.dev.monterrey.getluxbox.com/";
+    public static final String BASE_URL = "http://laguna.multimedios.com/";
 
     private RecyclerView mRecyclerView;
 
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mCompositeDisposable = new CompositeDisposable();
+        calculateImageHeightInDp();
         initRecyclerView();
         loadJSON();
     }
@@ -76,9 +80,37 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
+    private int calculateImageHeightInDp() {
+        Integer myInt = 0;
+        Observable.fromCallable(this::getHeightInDp)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+
+
+        Observable.fromCallable(() -> {
+            return getHeightInDp();
+        });
+        return myInt;
+    }
+
+    private int getHeightInDp() {
+        double viewRatio = 1.85714285714;
+        float deviceScreenDpi = Resources.getSystem().getDisplayMetrics().densityDpi;
+        float deviceHorizontalWidthInPixels = Resources.getSystem().getDisplayMetrics().widthPixels;
+        float viewHeightInPixels = Double.valueOf(deviceHorizontalWidthInPixels / viewRatio).floatValue();
+        float devicePixelsPerDensityPixel = deviceScreenDpi / 160;
+        Integer heightInDp = (int) Math.ceil(viewHeightInPixels/devicePixelsPerDensityPixel);
+        Log.d("RXjava", Integer.toString(heightInDp) + "dp");
+        return heightInDp;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         mCompositeDisposable.clear();
     }
+
+
 }

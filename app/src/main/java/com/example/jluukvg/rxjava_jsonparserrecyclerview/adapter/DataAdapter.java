@@ -137,7 +137,6 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         SectionCards card = cards.get(position);
         if (card != null) {
 
-            //vh1.vPlaceHolder.setVisibility(View.VISIBLE);
             final Article ci = ((ArticleCard) card).article;
 
             String strip_title;
@@ -154,26 +153,11 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             vh1.vCreated.setText(timestamp);
 
             if (ci.thumbnail != null) {
-
                 Picasso.with(context).load(ci.thumbnail.cover_phone)
                         .placeholder(new ColorDrawable(Color.LTGRAY))
-                        .error(R.drawable.ic_launcher_background)
-                        .into(vh1.vImage, new Callback() {
-                            public void onSuccess() {
-                                //vh1.vPlaceHolder.setVisibility(View.GONE);
-                                //vh1.vImage.setVisibility(View.VISIBLE);
-                            }
-
-                            public void onError() {
-                                //vh1.vThumbnailLayout.setVisibility(View.GONE);
-                                //vh1.vImage.setVisibility(View.GONE);
-                            }
-                        });
-            } /*else {
-                //vh1.vThumbnailLayout.setVisibility(View.GONE);
-                vh1.vPlaceHolder.setVisibility(View.GONE);
-                vh1.vImage.setVisibility(View.GONE);
-            }*/
+                        .error(R.drawable.image_default)
+                        .into(vh1.vImage);
+            }
         }
     }
 
@@ -181,7 +165,6 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         SectionCards card = cards.get(position);
         if (card != null) {
 
-            //vh2.vPlaceHolder.setVisibility(View.VISIBLE);
             final Article ci = ((ArticleSmallCard) card).article;
 
             String strip_title;
@@ -193,44 +176,17 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             vh2.vCreated.setText(timestamp);
 
             if (ci.thumbnail != null) {
-
                 Picasso.with(context).load(ci.thumbnail.cover_phone)
                         .placeholder(new ColorDrawable(Color.LTGRAY))
-                        .error(R.drawable.ic_launcher_background)
-                        .into(vh2.vImage, new Callback() {
-                            public void onSuccess() {
-                                //vh1.vPlaceHolder.setVisibility(View.GONE);
-                                //vh1.vImage.setVisibility(View.VISIBLE);
-                            }
-
-                            public void onError() {
-                                //vh1.vThumbnailLayout.setVisibility(View.GONE);
-                                //vh1.vImage.setVisibility(View.GONE);
-                            }
-                        });
-            } /*else {
-                vh2.vPlaceHolder.setVisibility(View.GONE);
-                vh2.vImage.setImageResource(R.drawable.image_default);
-            }*/
+                        .error(R.drawable.image_default)
+                        .into(vh2.vImage);
+            }
         }
     }
 
     @Override
     public int getItemCount() {
         return cards.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView mTvName, mTvVersion, mTvApi;
-
-        ViewHolder(View view) {
-            super(view);
-
-            mTvName = view.findViewById(R.id.tv_name);
-            mTvVersion = view.findViewById(R.id.tv_version);
-            mTvApi = view.findViewById(R.id.tv_api_level);
-        }
     }
 
     private void loadData() {

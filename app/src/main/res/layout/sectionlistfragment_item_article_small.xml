@@ -23,37 +23,22 @@
         android:duplicateParentState="true"
         android:minHeight="120dp">
 
-        <RelativeLayout
-            android:id="@+id/thumbnail_layout_small"
+        <ImageView
+            android:id="@+id/thumbnail_small"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp">
-
-            <View
-                android:id="@+id/sections_image_loading_small"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorAccent"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/thumbnail_small"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
-
-        </RelativeLayout>
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/thumbnail_layout_small"
-
-            android:layout_toRightOf="@+id/thumbnail_layout_small">
+            android:layout_toEndOf="@+id/thumbnail_small"
+            android:layout_toRightOf="@+id/thumbnail_small">
 
             <TextView
                 android:id="@+id/title_small"

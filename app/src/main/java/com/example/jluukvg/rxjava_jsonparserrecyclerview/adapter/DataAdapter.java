@@ -4,12 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.R;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.holders.ArticleSmallViewHolder;
@@ -21,16 +19,12 @@ import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.Ar
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.FooterCard;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.HeaderCard;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.SectionCards;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.Android;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.Article;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.GridContent;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.SectionParagraph;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import static java.lang.Boolean.FALSE;
 
 public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -39,15 +33,18 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_ARTICLE_SMALL = 10002;
     private static final int TYPE_AD_BANNER = 10003;
     private static final int TYPE_FOOTER = 10004;
+
     private final Context context;
 
     private ArrayList<SectionCards> cards;
 
     private ArrayList<SectionParagraph> paragraphs;
+    private int imageHeightInPixels;
 
-    public DataAdapter(Context context, ArrayList<SectionParagraph> paragraphs) {
+    public DataAdapter(Context context, ArrayList<SectionParagraph> paragraphs, int imageHeightInPixels) {
         this.context = context;
         this.paragraphs = paragraphs;
+        this.imageHeightInPixels = imageHeightInPixels;
         loadData();
     }
 
@@ -84,6 +81,10 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case TYPE_ARTICLE:
                 View v1 = inflater.inflate(R.layout.sectionlistfragment_item_article, parent, false);
+
+                final ImageView imageView = v1.findViewById(R.id.thumbnail);
+                imageView.getLayoutParams().height = imageHeightInPixels;
+
                 viewHolder = new ArticleViewHolder(v1);
                 break;
             case TYPE_ARTICLE_SMALL:
@@ -157,6 +158,9 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         .placeholder(new ColorDrawable(Color.LTGRAY))
                         .error(R.drawable.image_default)
                         .into(vh1.vImage);
+            } else {
+                Picasso.with(context).load(R.drawable.image_default)
+                        .into(vh1.vImage);
             }
         }
     }
@@ -179,6 +183,9 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 Picasso.with(context).load(ci.thumbnail.cover_phone)
                         .placeholder(new ColorDrawable(Color.LTGRAY))
                         .error(R.drawable.image_default)
+                        .into(vh2.vImage);
+            } else {
+                Picasso.with(context).load(R.drawable.image_default)
                         .into(vh2.vImage);
             }
         }
@@ -220,8 +227,12 @@ public class DataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     //adPosition = count + 2;
                 }
 
-                // Add first Article of section as a Big Card
-                cards.add(ArticleCard.convertArticleToCard(firstArticle));
+                // Add first Article of section as a Big Card (or Small Card if thumbnail is null)
+                if(firstArticle.thumbnail != null) {
+                    cards.add(ArticleCard.convertArticleToCard(firstArticle));
+                } else {
+                    cards.add(ArticleSmallCard.convertArticleToCard(firstArticle));
+                }
 
                 // Add remaining Articles of section as Small Cards
                 for (int i = 1; i < numOfArticles; i++) {

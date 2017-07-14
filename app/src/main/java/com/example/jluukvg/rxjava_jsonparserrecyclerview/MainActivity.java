@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String BASE_URL = "http://laguna.multimedios.com/";
 
     private RecyclerView mRecyclerView;
+    private int imageHeightInPixels = 0;
 
     private CompositeDisposable mCompositeDisposable;
 
@@ -40,14 +41,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mCompositeDisposable = new CompositeDisposable();
+        Log.d("RXjava", "My int: " + imageHeightInPixels);
         calculateImageHeightInDp();
         initRecyclerView();
         loadJSON();
+        Log.d("RXjava", "My int: " + imageHeightInPixels);
     }
 
     private void initRecyclerView() {
         mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
     }
@@ -65,14 +68,14 @@ public class MainActivity extends AppCompatActivity {
                 .client(client)
                 .build().create(RequestInterface.class);
         mCompositeDisposable.add(requestInterface.register()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponse, this::handleError));
     }
 
     private void handleResponse(SectionResponse sectionResponse) {
         ArrayList<SectionParagraph> paragraphs = sectionResponse.paragraphs;
-        DataAdapter mAdapter = new DataAdapter(this, paragraphs);
+        DataAdapter mAdapter = new DataAdapter(this, paragraphs, imageHeightInPixels);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -80,30 +83,29 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
-    private int calculateImageHeightInDp() {
-        Integer myInt = 0;
-        Observable.fromCallable(this::getHeightInDp)
+    private void calculateImageHeightInDp() {
+        Observable.fromCallable(this::getHeightInPixels)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
-
-
-
-        Observable.fromCallable(() -> {
-            return getHeightInDp();
-        });
-        return myInt;
+                .subscribe(this::mockMethod);
     }
 
-    private int getHeightInDp() {
+    private void mockMethod(int myInt) {
+        Log.d("RXjava", "Mock method result: " + Integer.toString(myInt));
+        this.imageHeightInPixels = myInt;
+        Log.d("RXjava", "Mock method result: " + Integer.toString(this.imageHeightInPixels));
+    }
+
+    private int getHeightInPixels() {
         double viewRatio = 1.85714285714;
         float deviceScreenDpi = Resources.getSystem().getDisplayMetrics().densityDpi;
-        float deviceHorizontalWidthInPixels = Resources.getSystem().getDisplayMetrics().widthPixels;
-        float viewHeightInPixels = Double.valueOf(deviceHorizontalWidthInPixels / viewRatio).floatValue();
         float devicePixelsPerDensityPixel = deviceScreenDpi / 160;
-        Integer heightInDp = (int) Math.ceil(viewHeightInPixels/devicePixelsPerDensityPixel);
-        Log.d("RXjava", Integer.toString(heightInDp) + "dp");
-        return heightInDp;
+        float viewWidthInPixels = (float) Resources.getSystem().getDisplayMetrics().widthPixels;
+        float viewHeightInPixels = Double.valueOf(viewWidthInPixels / viewRatio).floatValue();
+
+        int roundedViewWidthInPixels = (int) Math.ceil(viewWidthInPixels);
+        int roundedViewHeightInPixels = (int) Math.ceil(viewHeightInPixels);
+        return roundedViewHeightInPixels;
     }
 
     @Override

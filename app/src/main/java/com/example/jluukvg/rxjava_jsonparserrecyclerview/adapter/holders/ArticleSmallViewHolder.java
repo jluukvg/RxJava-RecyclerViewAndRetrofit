@@ -18,8 +18,6 @@ import android.widget.TextView;
 public class ArticleSmallViewHolder extends RecyclerView.ViewHolder {
     public final LinearLayout vSmallLayout;
     public final View vTopSeparator;
-    private final RelativeLayout vThumbnailLayoutSmall;
-    public final View vPlaceHolder;
     public final ImageView vImage;
     public final TextView vTitle;
     public final TextView vCreated;
@@ -29,8 +27,6 @@ public class ArticleSmallViewHolder extends RecyclerView.ViewHolder {
         super(v);
         vSmallLayout = v.findViewById(R.id.article_small_layout);
         vTopSeparator = v.findViewById(R.id.top_separator_section_list);
-        vThumbnailLayoutSmall = v.findViewById(R.id.thumbnail_layout_small);
-        vPlaceHolder = v.findViewById(R.id.sections_image_loading_small);
         vImage = v.findViewById(R.id.thumbnail_small);
         vTitle = v.findViewById(R.id.title_small);
         vCreated = v.findViewById(R.id.created_small);

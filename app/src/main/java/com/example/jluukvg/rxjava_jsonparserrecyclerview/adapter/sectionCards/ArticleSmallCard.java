@@ -1,6 +1,6 @@
 package com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards;
 
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.Article;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.Article;
 
 import java.util.ArrayList;
 

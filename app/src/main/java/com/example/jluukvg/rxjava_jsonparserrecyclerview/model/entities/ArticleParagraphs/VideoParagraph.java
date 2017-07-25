@@ -1,7 +1,7 @@
-package com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs;
+package com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs;
 
 
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.DrupalImage;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.DrupalImage;
 
 /**
  * Created by jluukvg on 4/4/2017.

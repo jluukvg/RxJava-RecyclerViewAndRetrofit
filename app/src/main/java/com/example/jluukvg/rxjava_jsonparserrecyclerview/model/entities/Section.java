@@ -1,4 +1,4 @@
-package com.example.jluukvg.rxjava_jsonparserrecyclerview.model;
+package com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities;
 
 /**
  * Created by miguel on 3/6/17.

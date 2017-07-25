@@ -1,4 +1,4 @@
-package com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs;
+package com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs;
 
 /**
  * Created by jluukvg on 4/4/2017.

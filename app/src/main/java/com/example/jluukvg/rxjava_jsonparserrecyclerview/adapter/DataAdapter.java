@@ -19,9 +19,9 @@ import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.Ar
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.FooterCard;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.HeaderCard;
 import com.example.jluukvg.rxjava_jsonparserrecyclerview.adapter.sectionCards.SectionCards;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.Article;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.GridContent;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.SectionParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.Article;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.SectionParagraphs.GridContent;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.SectionParagraphs.SectionParagraph;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

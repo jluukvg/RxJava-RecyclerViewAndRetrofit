@@ -1,6 +1,6 @@
 package com.example.jluukvg.rxjava_jsonparserrecyclerview.network;
 
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.SectionParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.SectionParagraphs.SectionParagraph;
 
 import java.util.ArrayList;
 

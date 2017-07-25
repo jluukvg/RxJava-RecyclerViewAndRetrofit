@@ -4,15 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.ArticleParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.CodeParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.ImageParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.QuoteParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.ReadMoreParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.TextParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.ArticleParagraphs.VideoParagraph;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.GridContent;
-import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.SectionParagraphs.SectionParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.ArticleParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.CodeParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.ImageParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.QuoteParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.ReadMoreParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.TextParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.ArticleParagraphs.VideoParagraph;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.SectionParagraphs.GridContent;
+import com.example.jluukvg.rxjava_jsonparserrecyclerview.model.entities.SectionParagraphs.SectionParagraph;
 
 public class CustomGson {
 

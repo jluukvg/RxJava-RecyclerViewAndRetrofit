@@ -10,4 +10,6 @@
     <color name="titleBlack">#000000</color>
     <color name="teaserGrey">#666666</color>
     <color name="timeAgoGrey">#999999</color>
+
+    <color name="testColor">#a31111</color>
 </resources>
